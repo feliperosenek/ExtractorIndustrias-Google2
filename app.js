@@ -41,7 +41,7 @@ async function validaGoogle() {
     let options = {
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       ignoreDefaultArgs: ['--disable-extensions'],
-      headless: false,
+      headless: true,
     };
 
     let browser = await puppeteer.launch(options);
