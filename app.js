@@ -39,12 +39,9 @@ async function validaGoogle() {
     });
 
     let options = {
-      defaultViewport: {
-        width: 1366,
-        height: 768,
-      },
-      args: ['--no-sandbox'],
-      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      ignoreDefaultArgs: ['--disable-extensions'],
+      headless: false,
     };
 
     let browser = await puppeteer.launch(options);
