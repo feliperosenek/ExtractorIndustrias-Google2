@@ -24,7 +24,7 @@ const sequelize = new Sequelize('eduard72_'+ params.bd +'', 'eduard72_wp625', '3
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-validaGoogle();
+validaGoogle();//
 
 async function validaGoogle() {
 
