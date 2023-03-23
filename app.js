@@ -37,7 +37,7 @@ api.post('/',  (req, res) => {
   res.status(200).end()
 })
 
-
+  validaGoogle();
 
 async function validaGoogle() {
 
