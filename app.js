@@ -21,10 +21,23 @@ const sequelize = new Sequelize('eduard72_'+ params.bd +'', 'eduard72_wp625', '3
   logging: false
 });
 
+const express = require('express');
+const api = express();
+api.use(express.json());
+api.use(express.urlencoded({
+  extended: true
+}));
+
+
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-validaGoogle();//
+api.post('/',  (req, res) => {   
+  validaGoogle();
+  res.status(200).end()
+})
+
+
 
 async function validaGoogle() {
 
@@ -385,3 +398,7 @@ async function validaGoogle() {
     validaGoogle()    
   }
 }
+
+api.listen(process.env.PORT || 3000, () => {
+  console.log('API RUN!');
+});

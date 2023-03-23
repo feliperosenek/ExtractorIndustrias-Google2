@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "consultar-cnpj": "^1.0.15",
+    "express": "^4.18.2",
     "jsdom": "^19.0.0",
     "minimist": "^1.2.5",
     "mysql2": "^2.3.3",
@@ -12,7 +13,6 @@
   "description": "cnpjApi: Faz a requisição de dados das indústrias na API CNPJ.WS",
   "version": "1.0.0",
   "main": "extractorIndustrias.js",
-  "devDependencies": {},
   "scripts": {
     "start": "node app.js --bd parananovo"
   },
