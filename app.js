@@ -79,7 +79,7 @@ async function validaGoogle() {
     var telefoneAtualizado = 0;
 
 
-    const getIndustrias = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=1 ORDER BY RAND()", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
+    const getIndustrias = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=0 ORDER BY RAND()", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
       type: QueryTypes.SELECT
     });
 
