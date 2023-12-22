@@ -89,7 +89,7 @@ async function validaGoogle() {
 
     for (let i = 0; i < getIndustrias.length; i++) { // loop principal que roda de acordo com o número de indústrias
 
-       const getIndustria = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=1 ORDER BY RAND() LIMIT 1", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
+       const getIndustria = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=0 ORDER BY RAND() LIMIT 1", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
       type: QueryTypes.SELECT
     });
 
