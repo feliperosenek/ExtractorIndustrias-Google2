@@ -79,7 +79,7 @@ async function validaGoogle() {
     var telefoneAtualizado = 0;
 
 
-    const getIndustrias = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=0 ORDER BY RAND()", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
+    const getIndustrias = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=1 ORDER BY RAND()", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
       type: QueryTypes.SELECT
     });
 
@@ -89,7 +89,7 @@ async function validaGoogle() {
 
     for (let i = 0; i < getIndustrias.length; i++) { // loop principal que roda de acordo com o número de indústrias
 
-       const getIndustria = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=0  ORDER BY RAND() LIMIT 1", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
+       const getIndustria = await sequelize.query("SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=1  ORDER BY RAND() LIMIT 1", { // pega as industrias no banco que não estão atualizadas em ordem aleatória
       type: QueryTypes.SELECT
     });
 
@@ -108,7 +108,7 @@ async function validaGoogle() {
 
         // --> DEFINE A URL DE PESQUISA DE ACORDO COM O NOME DA EMPRESA
 
-      urlSearch = getIndustria[0].nome.replace(/\s/g, "+"); // pega o nome da empresa e formata os espaçoes com o caracteres + para ser usado na pesquisa do Google
+      urlSearch = getIndustria[0].fantasia.replace(/\s/g, "+"); // pega o nome da empresa e formata os espaçoes com o caracteres + para ser usado na pesquisa do Google
 
       page.goto("https://www.google.com.br/search?q=" + urlSearch) //faz a busca com a url formatada
       await delay(4000)
@@ -364,7 +364,7 @@ async function validaGoogle() {
           facebookAbout = getDataBase[0].descricao
         }
 
-        await sequelize.query("UPDATE catalogo SET ddd_telefone='" + dddTelefone + "', telefone='" + telGoogle + "', ddd_telefone2='" + dddTelefone2 + "', telefone2='" + telFacebook + "', email='" + getFacebookEmail + "', pagina_web='" + results.site + "', instagram='" + instagramLink + "', facebook='" + facebookLink + "', linkedin='" + linkedinLink + "', descricao='" + facebookAbout + "', emailAtualizado='" + emailAtualizado + "', telefoneAtualizado='" + telefoneAtualizado + "', atualizado=1, google=" + verifyGoogle + "  WHERE id_catalogo = " + getDataBase[0].id_catalogo + "")
+        await sequelize.query("UPDATE catalogo SET ddd_telefone='" + dddTelefone + "', telefone='" + telGoogle + "', ddd_telefone2='" + dddTelefone2 + "', telefone2='" + telFacebook + "', email='" + getFacebookEmail + "', pagina_web='" + results.site + "', instagram='" + instagramLink + "', facebook='" + facebookLink + "', linkedin='" + linkedinLink + "', descricao='" + facebookAbout + "', emailAtualizado='" + emailAtualizado + "', telefoneAtualizado='" + telefoneAtualizado + "', atualizado=2, google=" + verifyGoogle + "  WHERE id_catalogo = " + getDataBase[0].id_catalogo + "")
         console.log('  ✔  Atualizado ');
 
       }
