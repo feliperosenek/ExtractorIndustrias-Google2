@@ -438,7 +438,6 @@ async function validaGoogle() {
 
         if (!getFacebookEmail) {
           // se o email do Facebook for vazio, pega o original
-          facebookLink = "";
           getFacebookEmail = getDataBase[0].email;
         }
 
