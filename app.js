@@ -181,11 +181,11 @@ async function validaGoogle() {
           ); // carrega o HTML de página
           domPage2 = new JSDOM(dataPage2);
 
-         var getDataFaceook = domPage2.window.document.querySelectorAll(
+          var getDataFaceook = domPage2.window.document.querySelectorAll(
             "ul > .x9f619"
           ); // encontra informações de contato
 
-          for (n = 0; n < 10; n++) {
+          for (n = 0; n < getDataFaceook.length; n++) {
             //percorre os itens da página
 
             var facebookRow = getDataFaceook[n]; // cria uma variável que recebe o valor de cada linha
@@ -461,6 +461,11 @@ async function validaGoogle() {
         if (!facebookAbout) {
           // se o descricao for vazio, pega o original
           facebookAbout = getDataBase[0].descricao;
+        }
+
+        if(/^[a-zA-Z]+$/.test(telFacebook)){
+          telFacebook=""
+          dddTelefone2=""
         }
 
         await sequelize.query(
