@@ -18,15 +18,12 @@ aptPkgs = [
   'libxrandr2',
   'libxss1',
   'libxtst6',
-  'xdg-utils',
-  'wget',
-  'ca-certificates'
+  'xdg-utils'
 ]
 
 [phases.build]
 commands = [
-  "wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
-  "dpkg -i google-chrome-stable_current_amd64.deb || apt-get -fy install"
+  "nix-env -iA nixpkgs.chromium"
 ]
 
 [phases.start]
