@@ -1,25 +1,25 @@
-[phases.setup]
-  aptPkgs = [
-    'fonts-liberation',
-    'libappindicator3-1',
-    'libasound2',
-    'libatk-bridge2.0-0',
-    'libatk1.0-0',
-    'libgbm1',
-    'libgtk-3-0',
-    'libnspr4',
-    'libnss3',
-    'libx11-xcb1',
-    'libxcomposite1',
-    'libxcursor1',
-    'libxdamage1',
-    'libxfixes3',
-    'libxi6',
-    'libxrandr2',
-    'libxss1',
-    'libxtst6',
-    'xdg-utils'
-  ]
+{ pkgs ? import <nixpkgs> {} }:
 
-[build]
-  nixpacksVersion = "1.15.0"
+pkgs.mkShell {
+  buildInputs = [
+    pkgs.glibc
+    pkgs.chromium
+    pkgs.fonts-liberation
+    pkgs.libappindicator-gtk3
+    pkgs.alsaLib
+    pkgs.atk
+    pkgs.glib
+    pkgs.gtk3
+    pkgs.nss
+    pkgs.libx11
+    pkgs.libxcomposite
+    pkgs.libxcursor
+    pkgs.libxdamage
+    pkgs.libxfixes
+    pkgs.libxi
+    pkgs.libxrandr
+    pkgs.libxss
+    pkgs.libxtst
+    pkgs.xdg-utils
+  ];
+}
