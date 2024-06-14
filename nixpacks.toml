@@ -1,52 +1,32 @@
-# Use uma imagem base oficial do Node.js
-FROM node:16
+[phases.setup]
+aptPkgs = [
+  'fonts-liberation',
+  'libappindicator3-1',
+  'libasound2',
+  'libatk-bridge2.0-0',
+  'libatk1.0-0',
+  'libgbm1',
+  'libgtk-3-0',
+  'libnspr4',
+  'libnss3',
+  'libx11-xcb1',
+  'libxcomposite1',
+  'libxcursor1',
+  'libxdamage1',
+  'libxfixes3',
+  'libxi6',
+  'libxrandr2',
+  'libxss1',
+  'libxtst6',
+  'xdg-utils',
+  'wget'  # Adicionando wget para baixar o Chromium manualmente
+]
 
-# Instale as dependências necessárias para o Chromium
-RUN apt-get update && apt-get install -y \
-    fonts-liberation \
-    libappindicator3-1 \
-    libasound2 \
-    libatk-bridge2.0-0 \
-    libatk1.0-0 \
-    libgbm1 \
-    libgtk-3-0 \
-    libnspr4 \
-    libnss3 \
-    libx11-xcb1 \
-    libxcomposite1 \
-    libxcursor1 \
-    libxdamage1 \
-    libxfixes3 \
-    libxi6 \
-    libxrandr2 \
-    libxss1 \
-    libxtst6 \
-    xdg-utils \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+[phases.build]
+commands = [
+  "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
+  "dpkg -i google-chrome-stable_current_amd64.deb || apt-get -fy install"
+]
 
-# Baixe e instale o Google Chrome
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && dpkg -i google-chrome-stable_current_amd64.deb || apt-get -fy install \
-    && rm google-chrome-stable_current_amd64.deb
-
-# Defina o diretório de trabalho
-WORKDIR /app
-
-# Copie o package.json e o package-lock.json
-COPY package*.json ./
-
-# Instale as dependências do projeto
-RUN npm install
-
-# Copie o restante do código do aplicativo
-COPY . .
-
-# Defina a variável de ambiente para o Chrome
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome
-
-# Exponha a porta do aplicativo
-EXPOSE 3000
-
-# Comando para iniciar o aplicativo
-CMD ["node", "app.js"]
+[phases.start]
+cmd = "node app.js"
