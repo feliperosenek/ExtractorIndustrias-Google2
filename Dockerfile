@@ -23,7 +23,14 @@ RUN apt-get update && apt-get install -y \
   libx11-xcb1 \
   libxrender1 \
   libxi6 \
-  libdbus-glib-1-2
+  libdbus-glib-1-2 \
+  libxfixes3 \
+  libxcursor1 \
+  libxss1 \
+  libglib2.0-0 \
+  libnss3-dev \
+  libgconf-2-4 \
+  libgtk-3-0
 
 # Instalar nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
@@ -40,6 +47,9 @@ WORKDIR /app
 
 # Clonar o repositório
 RUN git clone https://github.com/feliperosenek/extractorindustrias-google2.git .
+
+# Navegar até o diretório do repositório
+WORKDIR /app/extractorindustrias-google2
 
 # Instalar as dependências do projeto
 RUN npm install
