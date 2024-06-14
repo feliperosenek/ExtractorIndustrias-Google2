@@ -55,10 +55,10 @@ async function validaGoogle() {
       });
 
     let options = {
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      ignoreDefaultArgs: ["--disable-extensions"],
-      headless: true,
-    };
+      executablePath: 'google-chrome-stable',
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+}
 
     let browser = await puppeteer.launch(options);
     let page = await browser.newPage();
