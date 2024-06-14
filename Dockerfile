@@ -55,6 +55,6 @@ RUN npm ci
 
 COPY . .
 
-RUN npm run build
+RUN npm start
 
-CMD [ "npm", "run", "production" ]
+CMD [ "npm", "start"]
