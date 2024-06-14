@@ -82,7 +82,7 @@ async function validaGoogle() {
     var telefoneAtualizado = 0;
 
     const getIndustrias = await sequelize.query(
-      "SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=0 && fantasia !='' ORDER BY RAND()",
+      "SELECT id_catalogo, nome, fantasia FROM `catalogo` WHERE atualizado=0 ORDER BY RAND()",
       {
         // pega as industrias no banco que não estão atualizadas em ordem aleatória
         type: QueryTypes.SELECT,
@@ -98,7 +98,7 @@ async function validaGoogle() {
       // loop principal que roda de acordo com o número de indústrias
 
       const getIndustria = await sequelize.query(
-        "SELECT id_catalogo, nome, fantasia, municipio, uf FROM `catalogo` WHERE atualizado=0 && fantasia !=''  ORDER BY RAND() LIMIT 1",
+        "SELECT id_catalogo, nome, fantasia, municipio, uf FROM `catalogo` WHERE atualizado=0 ORDER BY RAND() LIMIT 1",
         {
           // pega as industrias no banco que não estão atualizadas em ordem aleatória
           type: QueryTypes.SELECT,
@@ -129,10 +129,10 @@ async function validaGoogle() {
 
       var formatMunicipio =
       removeCar(getIndustria[0].municipio.replace(/\s/g, "+"));
+      var nome = removeCar(getIndustria[0].nome.replace(/\s/g, "+"))
+      var fantasia = removeCar(getIndustria[0].fantasia.replace(/\s/g, "+"))
 
-      var fantasia = getIndustria[0].fantasia.replace(/\s/g, "+");
-
-      urlSearch = fantasia + "+" + formatMunicipio + "+" + getIndustria[0].uf; // pega o nome da empresa e formata os espaçoes com o caracteres + para ser usado na pesquisa do Google
+      urlSearch = nome + "+" +fantasia + "+" + formatMunicipio + "+" + getIndustria[0].uf; // pega o nome da empresa e formata os espaçoes com o caracteres + para ser usado na pesquisa do Google
 
       console.log("https://www.google.com.br/search?q=" + urlSearch);
 
