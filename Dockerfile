@@ -5,7 +5,25 @@ FROM node:18
 RUN apt-get update && apt-get install -y \
   curl \
   git \
-  libasound2
+  libasound2 \
+  libnss3 \
+  libatk1.0-0 \
+  libatk-bridge2.0-0 \
+  libcups2 \
+  libdrm2 \
+  libxkbcommon0 \
+  libxcomposite1 \
+  libxdamage1 \
+  libxrandr2 \
+  libgbm1 \
+  libpango1.0-0 \
+  libxshmfence1 \
+  libglu1-mesa \
+  libxtst6 \
+  libx11-xcb1 \
+  libxrender1 \
+  libxi6 \
+  libdbus-glib-1-2
 
 # Instalar nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
