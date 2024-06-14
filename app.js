@@ -55,8 +55,7 @@ async function validaGoogle() {
       });
 
     let options = {
-      executablePath: 'google-chrome-stable',
-      headless: 'new',
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
 }
 
