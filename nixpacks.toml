@@ -18,6 +18,11 @@
     'libxrandr2',
     'libxss1',
     'libxtst6',
-    'xdg-utils',
-    'libc6'
+    'xdg-utils'
+  ]
+
+[phases.build]
+  nixPkgs = [
+    'glibc',
+    'libmount'
   ]
