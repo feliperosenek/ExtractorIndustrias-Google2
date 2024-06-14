@@ -1,3 +1,6 @@
+[build]
+  nixpacksVersion = "1.15.0"
+
 [phases.setup]
   aptPkgs = [
     'fonts-liberation',
@@ -19,10 +22,4 @@
     'libxss1',
     'libxtst6',
     'xdg-utils'
-  ]
-
-[phases.build]
-  nixPkgs = [
-    'glibc',
-    'libmount'
   ]
