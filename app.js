@@ -528,6 +528,3 @@ async function validaGoogle() {
   }
 }
 
-api.listen(process.env.PORT || 3000, () => {
-  console.log("API RUN!");
-});
