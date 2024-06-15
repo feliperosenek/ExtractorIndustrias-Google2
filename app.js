@@ -6,7 +6,7 @@ const Sequelize = require("sequelize");
 const { QueryTypes } = require("sequelize");
 const dotenv = require("dotenv");
 dotenv.config();
-
+//
 const sequelize = new Sequelize(
   "eduard72_" + process.env.DATABASE,
   "eduard72_wp625",
